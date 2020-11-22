@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["hermit"] = [{"text":"impl&lt;'a&gt; Drop for AcpiTable&lt;'a&gt;","synthetic":false,"types":[]},{"text":"impl Drop for TaskStacks","synthetic":false,"types":[]},{"text":"impl Drop for TaskTLS","synthetic":false,"types":[]},{"text":"impl Drop for virtq_desc_raw","synthetic":false,"types":[]}];
+implementors["scopeguard"] = [{"text":"impl&lt;T, F, S&gt; Drop for ScopeGuard&lt;T, F, S&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: FnOnce(T),<br>&nbsp;&nbsp;&nbsp;&nbsp;S: Strategy,&nbsp;</span>","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
