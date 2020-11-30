@@ -13,6 +13,9 @@ pub mod aarch64;
 #[cfg(target_arch = "x86_64")]
 pub mod x86_64;
 
+#[cfg(target_arch = "riscv64")]
+pub mod riscv64;
+
 // Export our platform-specific modules.
 #[cfg(target_arch = "aarch64")]
 pub use crate::arch::aarch64::*;
@@ -43,6 +46,36 @@ pub use crate::arch::aarch64::kernel::irq;
 
 #[cfg(target_arch = "aarch64")]
 pub use crate::arch::aarch64::kernel::systemtime::get_boot_time;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::*;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::stubs::{set_oneshot_timer, switch, wakeup_core};
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::{
+	application_processor_init, boot_application_processors, boot_processor_init,
+	get_processor_count, message_output_init, output_message_byte,
+};
+
+#[cfg(target_arch = "riscv64")]
+use crate::arch::riscv64::kernel::percore::core_scheduler;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::percore;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::scheduler;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::processor;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::irq;
+
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::systemtime::get_boot_time;
 
 #[cfg(target_arch = "x86_64")]
 pub use crate::arch::x86_64::*;

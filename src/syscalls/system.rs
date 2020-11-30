@@ -24,7 +24,7 @@
 use crate::arch;
 
 fn __sys_getpagesize() -> i32 {
-	arch::x86_64::mm::paging::get_application_page_size() as i32
+	arch::mm::paging::get_application_page_size() as i32
 }
 
 #[no_mangle]

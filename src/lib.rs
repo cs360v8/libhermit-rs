@@ -64,9 +64,6 @@ extern crate num;
 extern crate num_derive;
 extern crate num_traits;
 extern crate scopeguard;
-#[cfg(not(target_os = "hermit"))]
-#[macro_use]
-extern crate std;
 #[cfg(target_arch = "x86_64")]
 extern crate x86;
 
