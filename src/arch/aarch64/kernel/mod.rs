@@ -147,6 +147,10 @@ pub fn output_message_byte(byte: u8) {
 	}
 }
 
+pub fn get_base_address() -> VirtAddr {
+	unimplemented!()
+}
+
 /// Real Boot Processor initialization as soon as we have put the first Welcome message on the screen.
 pub fn boot_processor_init() {
 	::mm::init();

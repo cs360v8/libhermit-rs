@@ -20,6 +20,11 @@ pub use arch::aarch64::kernel::{
 	get_base_address, get_cmdline, get_cmdsize, get_image_size, is_single_kernel, is_uhyve,
 };
 
+#[cfg(target_arch = "riscv64")]
+pub use crate::arch::riscv64::kernel::{
+	get_cmdline, get_cmdsize, get_image_size, is_single_kernel, is_uhyve,
+};
+
 use crate::util;
 use alloc::string::String;
 use alloc::vec::Vec;

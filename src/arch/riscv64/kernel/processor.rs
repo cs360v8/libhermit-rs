@@ -87,3 +87,11 @@ pub fn udelay(usecs: u64) {
 		spin_loop_hint();
 	}
 }
+
+pub fn generate_random_number64() {
+	unimplemented!()
+}
+
+pub fn generate_random_number32() {
+	unimplemented!()
+}

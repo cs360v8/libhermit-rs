@@ -12,6 +12,7 @@ use crate::arch::riscv64::kernel::percore::*;
 use crate::arch::riscv64::kernel::processor;
 use crate::arch::riscv64::mm::physicalmem;
 use crate::arch::riscv64::mm::virtualmem;
+use crate::arch::riscv64::mm::{PhysAddr, VirtAddr};
 use crate::mm;
 use crate::scheduler;
 
@@ -20,12 +21,11 @@ extern "C" {
 	static runtime_osinit: *const u8;
 }
 
-pub fn PAddr(vaddr: usize) -> usize {
-	unimplemented!()
+pub struct PAddr {
+
 }
 
-pub fn VAddr(paddr: usize) -> usize {
-	unimplemented!()
+pub struct VAddr {
 }
 
 /// Pointer to the root page table (called "Level 0" in ARM terminology).
@@ -609,4 +609,12 @@ pub fn map<S: PageSize>(
 #[inline]
 pub fn get_application_page_size() -> usize {
 	LargePageSize::SIZE
+}
+
+pub fn unmap<S: PageSize>(virtual_address: VirtAddr, count: usize) {
+	unimplemented!()
+}
+
+pub fn identity_map(start_address: PhysAddr, end_address: PhysAddr) {
+	unimplemented!()
 }

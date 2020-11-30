@@ -10,1381 +10,123 @@ with the dependency requirements. If the patch has a different version from
 what is locked in the Cargo.lock file, run `cargo update` to use the new
 version. This may also occur with an optional dependency that is not enabled.
    Compiling rusty-hermit v0.3.43 (/home/garrettgu/rusty-hermit/libhermit-rs)
-error[E0433]: failed to resolve: use of undeclared type `VirtAddr`
-  --> src/mm/mod.rs:27:45
-   |
-27 | static mut KERNEL_START_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                             ^^^^^^^^ use of undeclared type `VirtAddr`
-
-error[E0433]: failed to resolve: use of undeclared type `VirtAddr`
-  --> src/mm/mod.rs:31:43
-   |
-31 | static mut KERNEL_END_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                           ^^^^^^^^ use of undeclared type `VirtAddr`
-
-error[E0433]: failed to resolve: use of undeclared type `VirtAddr`
-  --> src/mm/mod.rs:34:43
-   |
-34 | static mut HEAP_START_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                           ^^^^^^^^ use of undeclared type `VirtAddr`
-
-error[E0433]: failed to resolve: use of undeclared type `VirtAddr`
-  --> src/mm/mod.rs:37:41
-   |
-37 | static mut HEAP_END_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                         ^^^^^^^^ use of undeclared type `VirtAddr`
-
-error[E0412]: cannot find type `VirtAddr` in this scope
-  --> src/arch/riscv64/kernel/scheduler.rs:39:11
-   |
-39 |     address: VirtAddr,
-   |              ^^^^^^^^ not found in this scope
-
-error[E0412]: cannot find type `VirtAddr` in this scope
-  --> src/arch/riscv64/kernel/scheduler.rs:40:6
-   |
-40 |     fs: VirtAddr,
-   |         ^^^^^^^^ not found in this scope
-
-error[E0412]: cannot find type `Layout` in this scope
-  --> src/arch/riscv64/kernel/scheduler.rs:41:10
-   |
-41 |     layout: Layout,
-   |             ^^^^^^ not found in this scope
-   |
-help: consider importing one of these items
-   |
-27 | use alloc::alloc::Layout;
-   |
-27 | use core::alloc::Layout;
-   |
-27 | use crate::Layout;
-   |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-  --> src/arch/riscv64/kernel/mod.rs:97:11
-   |
-97 |     unsafe { volatile_load(&BOOT_INFO.image_size) as usize }
-   |              ^^^^^^^^^^^^^ not found in this scope
-   |
-help: consider importing one of these items
-   |
-20 | use core::intrinsics::volatile_load;
-   |
-20 | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-   |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:101:11
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:414:24
     |
-101 |     unsafe { volatile_load(&BOOT_INFO.limit) as usize }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:105:11
-    |
-105 |     unsafe { volatile_load(&BOOT_INFO.mb_info) as usize }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:109:11
-    |
-109 |     unsafe { volatile_load(&BOOT_INFO.cpu_online) as usize }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:114:11
-    |
-114 |     unsafe { volatile_load(&BOOT_INFO.uhyve) != 0 }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:119:11
-    |
-119 |     unsafe { volatile_load(&BOOT_INFO.single_kernel) != 0 }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:123:11
-    |
-123 |     unsafe { volatile_load(&BOOT_INFO.cmdsize) as usize }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `volatile_load` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:127:11
-    |
-127 |     unsafe { volatile_load(&BOOT_INFO.cmdline) as usize }
-    |              ^^^^^^^^^^^^^ not found in this scope
-    |
-help: consider importing one of these items
-    |
-20  | use core::intrinsics::volatile_load;
-    |
-20  | use crate::synch::spinlock::fmt::result::iter::adapters::step_by::intrinsics::volatile_load;
-    |
-
-error[E0425]: cannot find function `is_single_kernel` in module `environment`
-   --> src/arch/riscv64/kernel/mod.rs:134:18
-    |
-134 |     if environment::is_single_kernel() {
-    |                     ^^^^^^^^^^^^^^^^ not found in `environment`
-
-error[E0425]: cannot find value `COM1` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:137:3
-    |
-137 |         COM1.init(SERIAL_PORT_BAUDRATE);
-    |         ^^^^ not found in this scope
-
-error[E0425]: cannot find function `is_single_kernel` in module `environment`
-   --> src/arch/riscv64/kernel/mod.rs:142:18
-    |
-142 |     if environment::is_single_kernel() {
-    |                     ^^^^^^^^^^^^^^^^ not found in `environment`
-
-error[E0425]: cannot find value `COM1` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:144:3
-    |
-144 |         COM1.write_byte(byte);
-    |         ^^^^ not found in this scope
-
-error[E0425]: cannot find value `CPU_ONLINE` in this scope
-   --> src/arch/riscv64/kernel/mod.rs:191:4
-    |
-191 |     **CPU_ONLINE.lock() += 1;
-    |       ^^^^^^^^^^ not found in this scope
-
-error[E0425]: cannot find function `output_message_buf` in module `arch`
-   --> src/console.rs:22:10
-    |
-22  |             arch::output_message_buf(buf);
-    |                   ^^^^^^^^^^^^^^^^^^ help: a function with a similar name exists: `output_message_byte`
+414 |               last_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
     | 
-   ::: src/arch/riscv64/kernel/mod.rs:141:1
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-141 | pub fn output_message_byte(byte: u8) {
-    | ------------------------------------ similarly named function `output_message_byte` defined here
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0425]: cannot find function `get_network_driver` in module `crate::arch::kernel::pci`
-  --> src/drivers/net/mod.rs:27:51
-   |
-27 |         if let Some(driver) = crate::arch::kernel::pci::get_network_driver() {
-   |                                                         ^^^^^^^^^^^^^^^^^^ not found in `crate::arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `crate::arch::kernel::pci`
-  --> src/drivers/net/mod.rs:68:51
-   |
-68 |         if let Some(driver) = crate::arch::kernel::pci::get_network_driver() {
-   |                                                         ^^^^^^^^^^^^^^^^^^ not found in `crate::arch::kernel::pci`
-
-error[E0425]: cannot find function `get_cmdsize` in this scope
-  --> src/environment.rs:34:16
-   |
-34 |     let cmdsize = get_cmdsize();
-   |                   ^^^^^^^^^^^ not found in this scope
-   |
-help: consider importing this function
-   |
-23 | use crate::kernel::get_cmdsize;
-   |
-
-error[E0425]: cannot find function `get_cmdline` in this scope
-  --> src/environment.rs:40:16
-   |
-40 |     let cmdline = get_cmdline().as_ptr::<u8>();
-   |                   ^^^^^^^^^^^ not found in this scope
-   |
-help: consider importing this function
-   |
-23 | use crate::kernel::get_cmdline;
-   |
-
-error[E0425]: cannot find function `is_uhyve` in this scope
-  --> src/environment.rs:93:6
-   |
-93 |         if is_uhyve() || is_single_kernel() {
-   |            ^^^^^^^^ not found in this scope
-   |
-help: consider importing this function
-   |
-23 | use crate::kernel::is_uhyve;
-   |
-
-error[E0425]: cannot find function `is_single_kernel` in this scope
-  --> src/environment.rs:93:20
-   |
-93 |         if is_uhyve() || is_single_kernel() {
-   |                          ^^^^^^^^^^^^^^^^ not found in this scope
-   |
-help: consider importing this function
-   |
-23 | use crate::kernel::is_single_kernel;
-   |
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:27:34
-   |
-27 | static mut KERNEL_START_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                  ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:31:32
-   |
-31 | static mut KERNEL_END_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:34:32
-   |
-34 | static mut HEAP_START_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                                ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:37:30
-   |
-37 | static mut HEAP_END_ADDRESS: VirtAddr = VirtAddr::zero();
-   |                              ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:39:34
-   |
-39 | pub fn kernel_start_address() -> VirtAddr {
-   |                                  ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:43:32
-   |
-43 | pub fn kernel_end_address() -> VirtAddr {
-   |                                ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/mm/mod.rs:57:37
-   |
-57 | fn map_heap<S: PageSize>(virt_addr: VirtAddr, size: usize) -> usize {
-   |                                     ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/mm/mod.rs:242:51
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:415:24
     |
-242 | pub fn allocate(sz: usize, no_execution: bool) -> VirtAddr {
-    |                                                   ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/mm/mod.rs:249:36
+415 |               user_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
+    | 
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-249 | pub fn deallocate(virtual_address: VirtAddr, sz: usize) {
-    |                                    ^^^^^^^^ not a type
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0425]: cannot find function `unmap` in module `arch::mm::paging`
-   --> src/mm/mod.rs:253:21
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:435:24
     |
-253 |         arch::mm::paging::unmap::<BasePageSize>(virtual_address, size / BasePageSize::SIZE);
-    |                           ^^^^^ not found in `arch::mm::paging`
-
-error[E0573]: expected type, found function `PhysAddr`
-   --> src/mm/mod.rs:266:20
+435 |               last_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
+    | 
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-266 |     physical_address: PhysAddr,
-    |                       ^^^^^^^^ not a type
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/mm/mod.rs:271:6
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:436:24
     |
-271 | ) -> VirtAddr {
-    |      ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/mm/mod.rs:295:31
+436 |               user_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
+    | 
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-295 | pub fn unmap(virtual_address: VirtAddr, sz: usize) {
-    |                               ^^^^^^^^ not a type
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0425]: cannot find function `unmap` in module `arch::mm::paging`
-   --> src/mm/mod.rs:299:21
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:456:24
     |
-299 |         arch::mm::paging::unmap::<BasePageSize>(virtual_address, size / BasePageSize::SIZE);
-    |                           ^^^^^ not found in `arch::mm::paging`
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/scheduler/task.rs:373:26
+456 |               last_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
+    | 
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-373 |     pub last_stack_pointer: VirtAddr,
-    |                             ^^^^^^^^ not a type
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/scheduler/task.rs:375:26
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/scheduler/task.rs:457:24
     |
-375 |     pub user_stack_pointer: VirtAddr,
-    |                             ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/scheduler/mod.rs:285:42
+457 |               user_stack_pointer: VirtAddr(0u64),
+    |                                   ^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
+    | 
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-285 |     pub fn get_current_user_stack(&self) -> VirtAddr {
-    |                                             ^^^^^^^^ not a type
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/scheduler/mod.rs:290:49
-    |
-290 |     pub fn set_current_user_stack(&mut self, addr: VirtAddr) {
-    |                                                    ^^^^^^^^ not a type
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+  --> src/syscalls/interfaces/uhyve.rs:43:12
    |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
+43 |       let ptr = VirtAddr(data as *mut _ as u64);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
    | 
-  ::: src/syscalls/condvar.rs:50:5
+  ::: src/arch/riscv64/mm/paging.rs:28:1
    |
-50 |     kernel_function!(__sys_destroy_queue(ptr))
-   |     ------------------------------------------ in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+28 | / pub struct VAddr {
+29 | | }
+   | |_- `VirtAddr` defined here
 
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/condvar.rs:89:5
-   |
-89 |     kernel_function!(__sys_notify(ptr, count))
-   |     ------------------------------------------ in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/syscalls/interfaces/uhyve.rs:194:34
     |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
+194 |           let mut sysopen = SysOpen::new(VirtAddr(name as u64), flags, mode);
+    |                                          ^^^^^^^^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
     | 
-   ::: src/syscalls/condvar.rs:110:5
+   ::: src/arch/riscv64/mm/paging.rs:28:1
     |
-110 |     kernel_function!(__sys_init_queue(ptr))
-    |     --------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
+error[E0423]: expected function, tuple struct or tuple variant, found struct `VirtAddr`
+   --> src/syscalls/interfaces/uhyve.rs:201:38
     |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
+201 |           let mut sysunlink = SysUnlink::new(VirtAddr(name as u64));
+    |                                              ^^^^^^^^^^^^^^^^^^^^^ help: use struct literal syntax instead: `VirtAddr {}`
     | 
-   ::: src/syscalls/condvar.rs:140:5
-    |
-140 |     kernel_function!(__sys_add_queue(ptr, timeout_ns))
-    |     -------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/condvar.rs:164:5
-    |
-164 |     kernel_function!(__sys_wait(ptr))
-    |     --------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0573]: expected type, found function `PhysAddr`
-  --> src/syscalls/interfaces/uhyve.rs:75:8
-   |
-75 |     argv: PhysAddr,
-   |           ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `PhysAddr`
-  --> src/syscalls/interfaces/uhyve.rs:76:8
-   |
-76 |     envp: PhysAddr,
-   |           ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/syscalls/interfaces/uhyve.rs:80:15
-   |
-80 |     fn new(argv: VirtAddr, envp: VirtAddr) -> SysCmdval {
-   |                  ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-  --> src/syscalls/interfaces/uhyve.rs:80:31
-   |
-80 |     fn new(argv: VirtAddr, envp: VirtAddr) -> SysCmdval {
-   |                                  ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `PhysAddr`
-   --> src/syscalls/interfaces/uhyve.rs:101:8
-    |
-101 |     name: PhysAddr,
-    |           ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/syscalls/interfaces/uhyve.rs:106:15
-    |
-106 |     fn new(name: VirtAddr) -> SysUnlink {
-    |                  ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `PhysAddr`
-   --> src/syscalls/interfaces/uhyve.rs:116:8
-    |
-116 |     name: PhysAddr,
-    |           ^^^^^^^^ not a type
-
-error[E0573]: expected type, found function `VirtAddr`
-   --> src/syscalls/interfaces/uhyve.rs:123:15
-    |
-123 |     fn new(name: VirtAddr, flags: i32, mode: i32) -> SysOpen {
-    |                  ^^^^^^^^ not a type
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:119:28
-    |
-119 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:126:28
-    |
-126 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:133:28
-    |
-133 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:140:28
-    |
-140 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:147:28
-    |
-147 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:154:28
-    |
-154 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_network_driver` in module `arch::kernel::pci`
-   --> src/syscalls/interfaces/mod.rs:161:28
-    |
-161 |         match arch::kernel::pci::get_network_driver() {
-    |                                  ^^^^^^^^^^^^^^^^^^ not found in `arch::kernel::pci`
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/processor.rs:18:5
-   |
-18 |     kernel_function!(__sys_get_processor_count())
-   |     --------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/processor.rs:28:5
-   |
-28 |     kernel_function!(__sys_get_processor_frequency())
-   |     ------------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `generate_random_number32` in module `arch::processor`
-  --> src/syscalls/random.rs:22:19
-   |
-22 |     arch::processor::generate_random_number32()
-   |                      ^^^^^^^^^^^^^^^^^^^^^^^^ help: a function with a similar name exists: `generate_random_number`
-   | 
-  ::: src/arch/riscv64/kernel/processor.rs:32:1
-   |
-32 | pub fn generate_random_number() -> Option<u32> {
-   | ---------------------------------------------- similarly named function `generate_random_number` defined here
-
-error[E0425]: cannot find function `generate_random_number64` in module `arch::processor`
-  --> src/syscalls/random.rs:26:19
-   |
-26 |     arch::processor::generate_random_number64()
-   |                      ^^^^^^^^^^^^^^^^^^^^^^^^ help: a function with a similar name exists: `generate_random_number`
-   | 
-  ::: src/arch/riscv64/kernel/processor.rs:32:1
-   |
-32 | pub fn generate_random_number() -> Option<u32> {
-   | ---------------------------------------------- similarly named function `generate_random_number` defined here
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/random.rs:39:5
-   |
-39 |     kernel_function!(__sys_rand32())
-   |     -------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/random.rs:48:5
-   |
-48 |     kernel_function!(__sys_rand64())
-   |     -------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/random.rs:55:5
-   |
-55 |     kernel_function!(__sys_rand())
-   |     ------------------------------ in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/random.rs:66:5
-   |
-66 |     kernel_function!(__sys_srand(seed))
-   |     ----------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/recmutex.rs:28:5
-   |
-28 |     kernel_function!(__sys_recmutex_init(recmutex))
-   |     ----------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/recmutex.rs:47:5
-   |
-47 |     kernel_function!(__sys_recmutex_destroy(recmutex))
-   |     -------------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/recmutex.rs:63:5
-   |
-63 |     kernel_function!(__sys_recmutex_lock(recmutex))
-   |     ----------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/recmutex.rs:79:5
-   |
-79 |     kernel_function!(__sys_recmutex_unlock(recmutex))
-   |     ------------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/semaphore.rs:27:5
-   |
-27 |     kernel_function!(__sys_sem_init(sem, value))
-   |     -------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/semaphore.rs:45:5
-   |
-45 |     kernel_function!(__sys_sem_destroy(sem))
-   |     ---------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/semaphore.rs:61:5
-   |
-61 |     kernel_function!(__sys_sem_post(sem))
-   |     ------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/semaphore.rs:80:5
-   |
-80 |     kernel_function!(__sys_sem_trywait(sem))
-   |     ---------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/semaphore.rs:101:5
-    |
-101 |     kernel_function!(__sys_sem_timedwait(sem, ms))
-    |     ---------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/semaphore.rs:110:5
-    |
-110 |     kernel_function!(__sys_sem_cancelablewait(sem, ms))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/spinlock.rs:39:5
-   |
-39 |     kernel_function!(__sys_spinlock_init(lock))
-   |     ------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/spinlock.rs:56:5
-   |
-56 |     kernel_function!(__sys_spinlock_destroy(lock))
-   |     ---------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/spinlock.rs:75:5
-   |
-75 |     kernel_function!(__sys_spinlock_lock(lock))
-   |     ------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/spinlock.rs:94:5
-   |
-94 |     kernel_function!(__sys_spinlock_unlock(lock))
-   |     --------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/spinlock.rs:114:5
-    |
-114 |     kernel_function!(__sys_spinlock_irqsave_init(lock))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/spinlock.rs:131:5
-    |
-131 |     kernel_function!(__sys_spinlock_irqsave_destroy(lock))
-    |     ------------------------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/spinlock.rs:150:5
-    |
-150 |     kernel_function!(__sys_spinlock_irqsave_lock(lock))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/spinlock.rs:169:5
-    |
-169 |     kernel_function!(__sys_spinlock_irqsave_unlock(lock))
-    |     ----------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/system.rs:32:5
-   |
-32 |     kernel_function!(__sys_getpagesize())
-   |     ------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/tasks.rs:37:5
-   |
-37 |     kernel_function!(__sys_getpid())
-   |     -------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/tasks.rs:52:5
-   |
-52 |     kernel_function!(__sys_getprio(id))
-   |     ----------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/tasks.rs:67:5
-   |
-67 |     kernel_function!(__sys_exit(arg))
-   |     --------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/tasks.rs:77:5
-   |
-77 |     kernel_function!(__sys_thread_exit(arg))
-   |     ---------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/tasks.rs:82:5
-   |
-82 |     kernel_function!(__sys_exit(-1))
-   |     -------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:138:5
-    |
-138 |     kernel_function!(__sys_usleep(usecs))
-    |     ------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:143:5
-    |
-143 |     kernel_function!(__sys_usleep(u64::from(ms) * 1000))
-    |     ---------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:169:5
-    |
-169 |     kernel_function!(__sys_nanosleep(rqtp, rmtp))
-    |     --------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:197:5
-    |
-197 |     kernel_function!(__sys_yield())
-    |     ------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:255:5
-    |
-255 |     kernel_function!(__sys_spawn2(func, arg, prio, stack_size, selector))
-    |     --------------------------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:266:18
-    |
-266 |     let new_id = kernel_function!(__sys_spawn2(func, arg, prio, USER_STACK_SIZE, selector));
-    |                  -------------------------------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:286:5
-    |
-286 |     kernel_function!(__sys_join(id))
-    |     -------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:304:5
-    |
-304 |     kernel_function!(__sys_block_current_task())
-    |     -------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:318:5
-    |
-318 |     kernel_function!(__sys_wakeup_task(id))
-    |     --------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/tasks.rs:328:5
-    |
-328 |     kernel_function!(__sys_get_priority())
-    |     -------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/timer.rs:71:5
-   |
-71 |     kernel_function!(__sys_clock_getres(clock_id, res))
-   |     --------------------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/timer.rs:104:5
-    |
-104 |     kernel_function!(__sys_clock_gettime(clock_id, tp))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/timer.rs:153:5
-    |
-153 |     kernel_function!(__sys_clock_nanosleep(clock_id, flags, rqtp, rmtp))
-    |     -------------------------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/timer.rs:164:5
-    |
-164 |     kernel_function!(__sys_clock_settime(clock_id, tp))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/timer.rs:185:5
-    |
-185 |     kernel_function!(__sys_gettimeofday(tp, tz))
-    |     -------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/timer.rs:200:5
-    |
-200 |     kernel_function!(__sys_setitimer(which, value, ovalue))
-    |     ------------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `is_uhyve` in module `environment`
-  --> src/syscalls/mod.rs:56:26
-   |
-56 |         } else if environment::is_uhyve() {
-   |                                ^^^^^^^^ not found in `environment`
-   |
-help: consider importing this function
-   |
-10 | use crate::kernel::is_uhyve;
-   |
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-  --> src/macros.rs:83:11
-   |
-83 |                 : "r"(get_kernel_stack())
-   |                       ^^^^^^^^^^^^^^^^ not found in this scope
-   | 
-  ::: src/syscalls/mod.rs:97:5
-   |
-97 |     kernel_function!(__sys_get_mac_address())
-   |     ----------------------------------------- in this macro invocation
-   |
-   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:106:5
-    |
-106 |     kernel_function!(__sys_get_mtu())
-    |     --------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:115:5
-    |
-115 |     kernel_function!(__sys_get_tx_buffer(len))
-    |     ------------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:124:5
-    |
-124 |     kernel_function!(__sys_send_tx_buffer(handle, len))
-    |     --------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:133:5
-    |
-133 |     kernel_function!(__sys_receive_rx_buffer())
-    |     ------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:142:5
-    |
-142 |     kernel_function!(__sys_rx_buffer_consumed())
-    |     -------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:153:5
-    |
-153 |     kernel_function!(__sys_netwait(handle, millis));
-    |     ------------------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:159:5
-    |
-159 |     kernel_function!(netwait_and_wakeup(handles, millis));
-    |     ------------------------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `print_statistics` in module `crate::arch::kernel`
-   --> src/syscalls/mod.rs:164:23
-    |
-164 |     crate::arch::kernel::print_statistics();
-    |                          ^^^^^^^^^^^^^^^^ not found in `crate::arch::kernel`
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:171:5
-    |
-171 |     kernel_function!(__sys_shutdown(arg))
-    |     ------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:180:5
-    |
-180 |     kernel_function!(__sys_unlink(name))
-    |     ------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:189:5
-    |
-189 |     kernel_function!(__sys_open(name, flags, mode))
-    |     ----------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:198:5
-    |
-198 |     kernel_function!(__sys_close(fd))
-    |     --------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:206:5
-    |
-206 |     kernel_function!(__sys_read(fd, buf, len))
-    |     ------------------------------------------ in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:215:5
-    |
-215 |     kernel_function!(__sys_write(fd, buf, len))
-    |     ------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:224:5
-    |
-224 |     kernel_function!(__sys_lseek(fd, offset, whence))
-    |     ------------------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
-
-error[E0425]: cannot find function `get_kernel_stack` in this scope
-   --> src/macros.rs:83:11
-    |
-83  |                 : "r"(get_kernel_stack())
-    |                       ^^^^^^^^^^^^^^^^ not found in this scope
-    | 
-   ::: src/syscalls/mod.rs:233:5
-    |
-233 |     kernel_function!(__sys_stat(file, st))
-    |     -------------------------------------- in this macro invocation
-    |
-    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+   ::: src/arch/riscv64/mm/paging.rs:28:1
+    |
+28  | / pub struct VAddr {
+29  | | }
+    | |_- `VirtAddr` defined here
 
 error: no global memory allocator found but one is required; link to std or add `#[global_allocator]` to a static item that implements the GlobalAlloc trait.
-
-warning: unused `#[macro_use]` import
-  --> src/lib.rs:63:1
-   |
-63 | #[macro_use]
-   | ^^^^^^^^^^^^
-   |
-   = note: `#[warn(unused_imports)]` on by default
 
 warning: unused import: `alloc::alloc::Layout`
   --> src/lib.rs:70:5
    |
 70 | use alloc::alloc::Layout;
    |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
 
 warning: unused import: `core::alloc::GlobalAlloc`
   --> src/lib.rs:71:5
@@ -1416,10 +158,16 @@ warning: unused import: `ptr`
 29 | use core::{mem, ptr};
    |                 ^^^
 
-warning: unused import: `crate::arch::riscv64::kernel::processor`
-  --> src/arch/riscv64/kernel/scheduler.rs:32:5
+warning: unused import: `PhysAddr`
+  --> src/arch/riscv64/kernel/scheduler.rs:31:33
    |
-32 | use crate::arch::riscv64::kernel::processor;
+31 | use crate::arch::mm::{VirtAddr, PhysAddr};
+   |                                 ^^^^^^^^
+
+warning: unused import: `crate::arch::riscv64::kernel::processor`
+  --> src/arch/riscv64/kernel/scheduler.rs:34:5
+   |
+34 | use crate::arch::riscv64::kernel::processor;
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 warning: unused import: `core::ptr`
@@ -1434,6 +182,24 @@ warning: unused import: `crate::environment`
 8 | use crate::environment;
   |     ^^^^^^^^^^^^^^^^^^
 
+warning: unused import: `crate::synch::spinlock::SpinlockIrqSave`
+ --> src/arch/riscv64/kernel/pci.rs:9:5
+  |
+9 | use crate::synch::spinlock::SpinlockIrqSave;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `core::convert::TryInto`
+  --> src/arch/riscv64/kernel/pci.rs:11:5
+   |
+11 | use core::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `fmt`
+  --> src/arch/riscv64/kernel/pci.rs:12:12
+   |
+12 | use core::{fmt, u32, u8};
+   |            ^^^
+
 warning: unused import: `crate::arch::riscv64::kernel::percore::*`
   --> src/arch/riscv64/kernel/mod.rs:20:5
    |
@@ -1445,6 +211,18 @@ warning: unused import: `crate::arch::riscv64::kernel::serial::SerialPort`
    |
 21 | use crate::arch::riscv64::kernel::serial::SerialPort;
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::environment`
+  --> src/arch/riscv64/kernel/mod.rs:24:5
+   |
+24 | use crate::environment;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::kernel_message_buffer`
+  --> src/arch/riscv64/kernel/mod.rs:25:5
+   |
+25 | use crate::kernel_message_buffer;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 warning: unused import: `crate::synch::spinlock::Spinlock`
   --> src/arch/riscv64/kernel/mod.rs:26:5
@@ -1471,9 +249,9 @@ warning: unused import: `crate::arch::riscv64::kernel::processor`
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 warning: unused import: `crate::scheduler`
-  --> src/arch/riscv64/mm/paging.rs:16:5
+  --> src/arch/riscv64/mm/paging.rs:17:5
    |
-16 | use crate::scheduler;
+17 | use crate::scheduler;
    |     ^^^^^^^^^^^^^^^^
 
 warning: unused imports: `BasePageSize`, `PageSize`
@@ -1517,6 +295,12 @@ warning: unused import: `crate::arch::riscv64::kernel::percore::core_scheduler`
    |
 63 | use crate::arch::riscv64::kernel::percore::core_scheduler;
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::arch`
+ --> src/console.rs:9:5
+  |
+9 | use crate::arch;
+  |     ^^^^^^^^^^^
 
 warning: unused imports: `HugePageSize`, `LargePageSize`
   --> src/mm/mod.rs:16:16
@@ -1578,352 +362,18 @@ error: `#[alloc_error_handler]` function required, but not found.
 
 note: Use `#![feature(default_alloc_error_handler)]` for a default error handler.
 
-error[E0308]: mismatched types
-   --> src/lib.rs:312:47
+error[E0392]: parameter `'a` is never used
+   --> src/arch/riscv64/kernel/pci.rs:120:22
     |
-312 |     while CORE_COUNTER.load(Ordering::SeqCst) != get_processor_count() {
-    |                                                  ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
+120 | pub struct PciDriver<'a> {
+    |                      ^^ unused parameter
     |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-312 |     while CORE_COUNTER.load(Ordering::SeqCst) != get_processor_count().try_into().unwrap() {
-    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: consider removing `'a`, referring to it in a field, or using a marker such as `PhantomData`
 
-error[E0599]: no function or associated item named `new` found for struct `TaskTLS` in the current scope
-  --> src/arch/riscv64/kernel/scheduler.rs:91:22
-   |
-38 | pub struct TaskTLS {
-   | ------------------ function or associated item `new` not found for this
-...
-91 |         let tls = TaskTLS::new(tls_allocation_size);
-   |                            ^^^ function or associated item not found in `TaskTLS`
+error: aborting due to 13 previous errors; 39 warnings emitted
 
-error[E0616]: field `current_task` of struct `PerCoreScheduler` is private
-  --> src/arch/riscv64/kernel/scheduler.rs:99:52
-   |
-99 |         let mut current_task_borrowed = core_scheduler().current_task.borrow_mut();
-   |                                                          ^^^^^^^^^^^^ private field
-
-error[E0308]: mismatched types
-   --> src/arch/riscv64/kernel/scheduler.rs:105:36
-    |
-105 |         current_task_borrowed.tls = Some(Rc::new(RefCell::new(tls)));
-    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `TaskTLS`, found struct `Rc`
-    |
-    = note: expected struct `TaskTLS`
-               found struct `Rc<RefCell<_>>`
-
-error[E0308]: mismatched types
-  --> src/mm/mod.rs:65:4
-   |
-64 |         match arch::mm::physicalmem::allocate_aligned(S::SIZE, S::SIZE) {
-   |               --------------------------------------------------------- this expression has type `usize`
-65 |             Ok(phys_addr) => {
-   |             ^^^^^^^^^^^^^ expected `usize`, found enum `core::result::Result`
-   |
-   = note: expected type `usize`
-              found enum `core::result::Result<_, _>`
-
-error[E0308]: mismatched types
-  --> src/mm/mod.rs:69:4
-   |
-64 |         match arch::mm::physicalmem::allocate_aligned(S::SIZE, S::SIZE) {
-   |               --------------------------------------------------------- this expression has type `usize`
-...
-69 |             Err(_) => {
-   |             ^^^^^^ expected `usize`, found enum `core::result::Result`
-   |
-   = note: expected type `usize`
-              found enum `core::result::Result<_, _>`
-
-error[E0599]: no method named `unwrap` found for type `usize` in the current scope
-   --> src/mm/mod.rs:244:63
-    |
-244 |     let physical_address = arch::mm::physicalmem::allocate(size).unwrap();
-    |                                                                  ^^^^^^ method not found in `usize`
-
-error[E0599]: no method named `unwrap` found for type `usize` in the current scope
-   --> src/mm/mod.rs:287:61
-    |
-287 |     let virtual_address = arch::mm::virtualmem::allocate(size).unwrap();
-    |                                                                ^^^^^^ method not found in `usize`
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:112:22
-    |
-112 |             arch::wakeup_core(core_id);
-    |                               ^^^^^^^ expected `usize`, found `u32`
-    |
-help: you can convert a `u32` to a `usize` and panic if the converted value doesn't fit
-    |
-112 |             arch::wakeup_core(core_id.try_into().unwrap());
-    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:155:13
-    |
-155 |             if id == arch::get_processor_count() {
-    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
-    |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-155 |             if id == arch::get_processor_count().try_into().unwrap() {
-    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:196:22
-    |
-196 |             arch::wakeup_core(core_id);
-    |                               ^^^^^^^ expected `usize`, found `u32`
-    |
-help: you can convert a `u32` to a `usize` and panic if the converted value doesn't fit
-    |
-196 |             arch::wakeup_core(core_id.try_into().unwrap());
-    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:227:22
-    |
-227 |             arch::wakeup_core(task.get_core_id());
-    |                               ^^^^^^^^^^^^^^^^^^ expected `usize`, found `u32`
-    |
-help: you can convert a `u32` to a `usize` and panic if the converted value doesn't fit
-    |
-227 |             arch::wakeup_core(task.get_core_id().try_into().unwrap());
-    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:513:59
-    |
-513 |     let idle_task = Rc::new(RefCell::new(Task::new_idle(tid, core_id)));
-    |                                                              ^^^^^^^ expected `u32`, found `usize`
-    |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-513 |     let idle_task = Rc::new(RefCell::new(Task::new_idle(tid, core_id.try_into().unwrap())));
-    |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:523:3
-    |
-523 |         core_id,
-    |         ^^^^^^^ expected `u32`, found `usize`
-    |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-523 |         core_id: core_id.try_into().unwrap(),
-    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/mod.rs:536:21
-    |
-536 |         SCHEDULERS.insert(core_id, &(*scheduler));
-    |                           ^^^^^^^ expected `u32`, found `usize`
-    |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-536 |         SCHEDULERS.insert(core_id.try_into().unwrap(), &(*scheduler));
-    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:414:33
-    |
-414 |             last_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-414 |             last_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:415:33
-    |
-415 |             user_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-415 |             user_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0061]: this function takes 0 arguments but 1 argument was supplied
-   --> src/scheduler/task.rs:418:12
-    |
-418 |             stacks: TaskStacks::new(stack_size),
-    |                     ^^^^^^^^^^^^^^^ ---------- supplied 1 argument
-    |                     |
-    |                     expected 0 arguments
-    |
-note: associated function defined here
-   --> src/arch/riscv64/kernel/scheduler.rs:55:9
-    |
-55  |     pub fn new() -> Self {
-    |            ^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:435:33
-    |
-435 |             last_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-435 |             last_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:436:33
-    |
-436 |             user_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-436 |             user_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:456:33
-    |
-456 |             last_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-456 |             last_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:457:33
-    |
-457 |             user_stack_pointer: VirtAddr(0u64),
-    |                                          ^^^^ expected `usize`, found `u64`
-    |
-help: change the type of the numeric literal from `u64` to `usize`
-    |
-457 |             user_stack_pointer: VirtAddr(0usize),
-    |                                          ^^^^^^
-
-error[E0599]: no method named `clone` found for struct `TaskStacks` in the current scope
-    | 
-   ::: src/arch/riscv64/kernel/scheduler.rs:49:1
-    |
-49  | pub struct TaskStacks {
-    | --------------------- method `clone` not found for this
-   --> src/scheduler/task.rs:460:24
-    |
-460 |             stacks: task.stacks.clone(),
-    |                                 ^^^^^ method not found in `TaskStacks`
-    | 
-   ::: /home/garrettgu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/clone.rs:119:8
-    |
-119 |     fn clone(&self) -> Self;
-    |        -----
-    |        |
-    |        the method is available for `Arc<TaskStacks>` here
-    |        the method is available for `Rc<TaskStacks>` here
-    |
-    = help: items from traits can only be used if the trait is implemented and in scope
-    = note: the following trait defines an item `clone`, perhaps you need to implement it:
-            candidate #1: `Clone`
-
-error[E0599]: no method named `clone` found for enum `Option<TaskTLS>` in the current scope
-   --> src/scheduler/task.rs:463:18
-    |
-463 |             tls: task.tls.clone(),
-    |                           ^^^^^ method not found in `Option<TaskTLS>`
-    | 
-   ::: src/arch/riscv64/kernel/scheduler.rs:38:1
-    |
-38  | pub struct TaskTLS {
-    | ------------------ doesn't satisfy `TaskTLS: Clone`
-    | 
-   ::: /home/garrettgu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:161:1
-    |
-161 | pub enum Option<T> {
-    | ------------------ doesn't satisfy `Option<TaskTLS>: Clone`
-    | 
-   ::: /home/garrettgu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/clone.rs:119:8
-    |
-119 |     fn clone(&self) -> Self;
-    |        -----
-    |        |
-    |        the method is available for `Arc<Option<TaskTLS>>` here
-    |        the method is available for `Rc<Option<TaskTLS>>` here
-    |
-    = note: the method `clone` exists but the following trait bounds were not satisfied:
-            `TaskTLS: Clone`
-            which is required by `Option<TaskTLS>: Clone`
-
-error[E0308]: mismatched types
-   --> src/scheduler/task.rs:508:25
-    |
-508 |                 borrowed.core_id == core_id(),
-    |                                     ^^^^^^^^^ expected `u32`, found `usize`
-    |
-help: you can convert a `usize` to a `u32` and panic if the converted value doesn't fit
-    |
-508 |                 borrowed.core_id == core_id().try_into().unwrap(),
-    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-  --> src/syscalls/interfaces/uhyve.rs:43:21
-   |
-43 |     let ptr = VirtAddr(data as *mut _ as u64);
-   |                        ^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `u64`
-   |
-help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
-   |
-43 |     let ptr = VirtAddr((data as *mut _ as u64).try_into().unwrap());
-   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/syscalls/interfaces/uhyve.rs:194:43
-    |
-194 |         let mut sysopen = SysOpen::new(VirtAddr(name as u64), flags, mode);
-    |                                                 ^^^^^^^^^^^ expected `usize`, found `u64`
-    |
-help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
-    |
-194 |         let mut sysopen = SysOpen::new(VirtAddr((name as u64).try_into().unwrap()), flags, mode);
-    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/syscalls/interfaces/uhyve.rs:201:47
-    |
-201 |         let mut sysunlink = SysUnlink::new(VirtAddr(name as u64));
-    |                                                     ^^^^^^^^^^^ expected `usize`, found `u64`
-    |
-help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
-    |
-201 |         let mut sysunlink = SysUnlink::new(VirtAddr((name as u64).try_into().unwrap()));
-    |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0308]: mismatched types
-   --> src/syscalls/tasks.rs:238:49
-    |
-238 |         CORE_COUNTER.fetch_add(1, Ordering::SeqCst) % get_processor_count()
-    |                                                       ^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `usize`
-
-error[E0277]: cannot mod `u32` by `usize`
-   --> src/syscalls/tasks.rs:238:47
-    |
-238 |         CORE_COUNTER.fetch_add(1, Ordering::SeqCst) % get_processor_count()
-    |                                                     ^ no implementation for `u32 % usize`
-    |
-    = help: the trait `Rem<usize>` is not implemented for `u32`
-
-warning: unused import: `crate::arch::riscv64::kernel::percore`
-  --> src/arch/riscv64/mm/paging.rs:11:5
-   |
-11 | use crate::arch::riscv64::kernel::percore::*;
-   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error: aborting due to 164 previous errors; 34 warnings emitted
-
-Some errors have detailed explanations: E0061, E0277, E0308, E0412, E0425, E0433, E0573, E0599, E0616.
-For more information about an error, try `rustc --explain E0061`.
+Some errors have detailed explanations: E0392, E0423.
+For more information about an error, try `rustc --explain E0392`.
 error: could not compile `rusty-hermit`
 
 To learn more, run the command again with --verbose.

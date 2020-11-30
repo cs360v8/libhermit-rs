@@ -25,6 +25,7 @@ use crate::environment;
 use crate::kernel_message_buffer;
 use crate::synch::spinlock::Spinlock;
 use core::ptr;
+use core::intrinsics::volatile_load;
 
 const SERIAL_PORT_BAUDRATE: u32 = 115200;
 
@@ -129,23 +130,15 @@ pub fn get_cmdline() -> usize {
 
 /// Earliest initialization function called by the Boot Processor.
 pub fn message_output_init() {
-	percore::init();
-
-	if environment::is_single_kernel() {
-		// We can only initialize the serial port here, because VGA requires processor
-		// configuration first.
-		COM1.init(SERIAL_PORT_BAUDRATE);
-	}
+	unimplemented!()
 }
 
 pub fn output_message_byte(byte: u8) {
-	if environment::is_single_kernel() {
-		// Output messages to the serial port and VGA screen in unikernel mode.
-		COM1.write_byte(byte);
-	} else {
-		// Output messages to the kernel message buffer in multi-kernel mode.
-		kernel_message_buffer::write_byte(byte);
-	}
+	unimplemented!()
+}
+
+pub fn output_message_buf(byte: &[u8]) {
+	unimplemented!()
 }
 
 /// Real Boot Processor initialization as soon as we have put the first Welcome message on the screen.
@@ -172,26 +165,14 @@ pub fn application_processor_init() {
 }
 
 fn finish_processor_init() {
-	debug!("Initialized Processor");
-
-	/*if environment::is_uhyve() {
-		// uhyve does not use apic::detect_from_acpi and therefore does not know the number of processors and
-		// their APIC IDs in advance.
-		// Therefore, we have to add each booted processor into the CPU_LOCAL_APIC_IDS vector ourselves.
-		// Fortunately, the Core IDs are guaranteed to be sequential and match the Local APIC IDs.
-		apic::add_local_apic_id(core_id() as u8);
-
-		// uhyve also boots each processor into entry.asm itself and does not use apic::boot_application_processors.
-		// Therefore, the current processor already needs to prepare the processor variables for a possible next processor.
-		apic::init_next_processor_variables(core_id() + 1);
-	}*/
-
-	// This triggers apic::boot_application_processors (bare-metal/QEMU) or uhyve
-	// to initialize the next processor.
-	**CPU_ONLINE.lock() += 1;
+	unimplemented!()
 }
 
 pub fn network_adapter_init() -> i32 {
 	// Riscv64 supports no network adapters on bare-metal/QEMU, so return a failure code.
 	-1
+}
+
+pub fn print_statistics() {
+	unimplemented!()
 }

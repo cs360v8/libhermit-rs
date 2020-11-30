@@ -27,6 +27,11 @@ impl PerCoreVariables {
 	}
 }
 
+#[inline(always)]
+pub fn get_kernel_stack() -> u64 {
+	unimplemented!()
+}
+
 #[repr(C)]
 pub struct PerCoreVariable<T> {
 	data: T,

@@ -10,6 +10,8 @@ use crate::arch;
 use crate::synch::spinlock::SpinlockIrqSave;
 use core::fmt;
 
+use crate::kernel::output_message_buf;
+
 pub struct Console;
 
 /// A collection of methods that are required to format
@@ -19,7 +21,7 @@ impl fmt::Write for Console {
 	fn write_str(&mut self, s: &str) -> fmt::Result {
 		if !s.is_empty() {
 			let buf = s.as_bytes();
-			arch::output_message_buf(buf);
+			output_message_buf(buf);
 		}
 
 		Ok(())

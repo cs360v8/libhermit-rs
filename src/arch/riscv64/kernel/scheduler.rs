@@ -28,6 +28,8 @@ use alloc::rc::Rc;
 use core::cell::RefCell;
 use core::{mem, ptr};
 
+use crate::arch::mm::{VirtAddr, PhysAddr};
+
 use crate::arch::riscv64::kernel::percore::*;
 use crate::arch::riscv64::kernel::processor;
 use crate::scheduler::task::{Task, TaskFrame};
@@ -38,7 +40,6 @@ include!("../../../config.rs");
 pub struct TaskTLS {
 	address: VirtAddr,
 	fs: VirtAddr,
-	layout: Layout,
 }
 
 extern "C" {
