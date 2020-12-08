@@ -119,7 +119,7 @@ pub struct MemoryBar {
 
 use core::marker::PhantomData;
 pub struct PciDriver<'a> {
-	test: PhantomData<'a>
+	test: PhantomData<&'a i32> 
 }
 
 pub fn register_driver(drv: PciDriver<'static>) {

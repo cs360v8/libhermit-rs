@@ -67,7 +67,7 @@ where
 }
 
 #[inline]
-pub fn core_id() -> usize {
+pub fn core_id() -> u32 {
 	unsafe { PERCORE.core_id.get() }
 }
 
