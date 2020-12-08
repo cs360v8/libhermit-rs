@@ -117,7 +117,9 @@ pub struct MemoryBar {
 	pub prefetchable: bool,
 }
 
+use core::marker::PhantomData;
 pub struct PciDriver<'a> {
+	test: PhantomData<'a>
 }
 
 pub fn register_driver(drv: PciDriver<'static>) {
